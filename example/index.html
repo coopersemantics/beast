@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>Beast - Example Usage</title>
+	</head>
+
+	<body>
+		<h1>Beast - Example Usage</h1>
+
+		<!-- Scripts -->
+		<script src="../lib/beast.js"></script>
+		<script>
+			/**
+			 * Example 1
+			 */
+
+			var foo = Beast([0, 1, 3, undefined, null, 16, 17])
+				.filter(function (value) {
+					return !!value;
+				})
+				.prepend(7, 8, 9)
+				.map(function (value) {
+					return value * 3;
+				})
+				.value();
+
+			console.log(foo);
+
+			/**
+			 * Example 2
+			 */
+
+			Beast([0, 1, 3, undefined, null, 16, 17])
+				.mixins({
+					take: function (howMany) {
+						this.set(this.get()
+							.splice(0, howMany));
+					}
+				})
+				.filter(function (value) {
+					return !!value;
+				})
+				.take(3)
+				.tap(function() {
+					console.log(this.inspect());
+				})
+				.splice(0, 1)
+				.tap(function () {
+					console.log(this.get());
+				})
+				.prepend(7, 8, 9)
+				.append(10, 11, 12)
+				.wait(function () {
+					setTimeout(function () {
+						this.set(Beast(this.get())
+							.append(66, 66)
+							.filter(function (value) {
+								return value < 20;
+							})
+							.tap(function () {
+								console.log(this.get());
+							})
+							.prepend(33, 33)
+							.value());
+
+						this.next();
+					}.bind(this), 500);
+				})
+				.tap(function () {
+					console.log(this.get());
+				})
+				.map(function (value) {
+					return value * 3;
+				})
+				.value(function () {
+					console.log(this.get());
+				});
+		</script>
+	</body>
+</html>

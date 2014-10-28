@@ -1,0 +1,20 @@
+{
+    "name": "beast",
+    "version": "0.1.0",
+    "description": "An extensible wrapper that provides sensible methods on arrays.",
+    "author": "coopersemantics",
+    "homepage": "https://github.com/coopersemantics/beast",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/coopersemantics/beast"
+    },
+    "licenses": [
+        {
+            "type": "MIT",
+            "url": "https://github.com/coopersemantics/beast/blob/master/MIT-LICENSE.txt"
+        }
+    ],
+    "main": "./lib/beast.js",
+    "dependencies": {},
+    "devDependencies": {}
+}
